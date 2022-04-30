@@ -155,6 +155,32 @@ if (overwrite) {
   fs.mkdirSync(root);
 }
 
+template = variant || frameWork || template;
+
+console.log(`\nScaffolding project in ${root}...`);
+
+const templateDir = path.join(__dirname, `template-${template}`);
+
+const write = (file, content) => {
+  const targetPath = renameFiles[file]
+    ? path.join(root, renameFiles[file])
+    : path.join(root, file);
+  if (content) {
+    fs.writeFileSync(targetPath, content);
+  } else {
+    copy(path.join(templateDir, file), targetPath);
+  }
+};
+
+function copy(src, dest) {
+  const stat = fs.statSync(src);
+  if (stat.isDirectory()) {
+    copyDir(src, dest);
+  } else {
+    fs.copyFileSync(src, dest);
+  }
+}
+
 function emptyDir(dir) {
   if (!fs.existsSync(dir)) {
     return;
