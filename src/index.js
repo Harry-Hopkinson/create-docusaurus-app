@@ -172,6 +172,13 @@ const write = (file, content) => {
   }
 };
 
+const files = fs.readdirSync(templateDir);
+for (const file of files.filter((file) => file !== "package.json")) {
+  write(file);
+}
+
+const pkg = require(path.join(templateDir, "package.json"));
+
 function copy(src, dest) {
   const stat = fs.statSync(src);
   if (stat.isDirectory()) {
