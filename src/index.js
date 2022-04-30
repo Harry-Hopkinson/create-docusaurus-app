@@ -110,10 +110,10 @@ async function initialise() {
                 )
               : reset("Select a framework:"),
           initial: 0,
-          choices: FRAMEWORKS.map((framework) => {
-            const frameworkColor = framework.color;
+          choices: frameWorks.map((framework) => {
+            const frameworkColour = framework.colour;
             return {
-              title: frameworkColor(framework.name),
+              title: frameworkColour(framework.name),
               value: framework,
             };
           }),
@@ -126,9 +126,9 @@ async function initialise() {
           // @ts-ignore
           choices: (framework) =>
             framework.variants.map((variant) => {
-              const variantColor = variant.color;
+              const variantColour = variant.colour;
               return {
-                title: variantColor(variant.name),
+                title: variantColour(variant.name),
                 value: variant.name,
               };
             }),
@@ -143,5 +143,29 @@ async function initialise() {
   } catch (cancelled) {
     console.log(cancelled.message);
     return;
+  }
+}
+
+const { frameWork, overwrite, packageName, variant } = result;
+const root = path.join(cwd, targetDir);
+
+if (overwrite) {
+  emptyDir(root);
+} else if (!fs.existsSync(root)) {
+  fs.mkdirSync(root);
+}
+
+function emptyDir(dir) {
+  if (!fs.existsSync(dir)) {
+    return;
+  }
+  for (const file of fs.readdirSync(dir)) {
+    const abs = path.resolve(dir, file);
+    if (fs.lstatSync(abs).isDirectory()) {
+      emptyDir(abs);
+      fs.rmdirSync(abs);
+    } else {
+      fs.unlinkSync(abs);
+    }
   }
 }
