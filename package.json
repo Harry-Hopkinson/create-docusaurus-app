@@ -2,13 +2,13 @@
   "name": "create-docusaurus",
   "version": "1.0.0",
   "description": "CLI to create a Docusaurus Project.",
-  "main": "src/index.js",
+  "main": "index.js",
   "bin": {
-    "create-docusaurus": "src/index.js"
+    "create-docusaurus": "index.js"
   },
   "scripts": {
     "build": "tsc",
-    "javascript": "node src/index.js",
+    "javascript": "node index.js",
     "format": "prettier --write .",
     "check-format": "prettier --check ."
   },
