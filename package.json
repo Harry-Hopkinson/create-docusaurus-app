@@ -1,5 +1,5 @@
 {
-  "name": "create-docusaurus",
+  "name": "create-docusaurus-app",
   "version": "1.0.0",
   "description": "CLI to create a Docusaurus Project.",
   "main": "index.js",
@@ -7,7 +7,6 @@
     "create-docusaurus": "index.js"
   },
   "scripts": {
-    "build": "tsc",
     "javascript": "node index.js",
     "format": "prettier --write .",
     "check-format": "prettier --check ."
@@ -16,7 +15,12 @@
     "type": "git",
     "url": "git+https://github.com/Harry-Hopkinson/create-docusaurus.git"
   },
-  "keywords": [],
+  "keywords": [
+    "create-docusaurus",
+    "cli",
+    "docusaurus",
+    "code-generation"
+  ],
   "author": "harry-hopkinson",
   "license": "MIT",
   "bugs": {
